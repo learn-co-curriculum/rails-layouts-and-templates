@@ -9,7 +9,9 @@
 
 ## Outline
 
-Pretty simple README that illustrates how Rails uses layouts in app/views/layouts/application.html.erb as the default layout applied to all views.
+Pretty simple README that illustrates how Rails uses layouts in app/views/layouts/application.html.erb as the default layout applied to all views. 
+
+Start with why layouts are nice. Notice that every page needs certain things. It would be silly to copy paste every time
 
 Show that the layout is rendered in a simple static example (like an about page) but that the view is not rendered, only the layout is.
 
