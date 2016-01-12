@@ -33,7 +33,7 @@ To find the generated layout, go and have a look in your Rails app at the follow
 
 #### app/views/layouts/application.html.erb
 
-When you first generate a Rails app, it will generate something very similar to this, depending on your version of Rails. This file is a very good place to start adding common components, like the navigation, search, and footer from the example above. 
+When you first generate a Rails app, this file will generate something very similar to this, depending on your version of Rails. The application.html.erb file is a very good place to start adding common components, like the navigation, search, and footer from the example above. 
 
 ```erb
 <!DOCTYPE html>
@@ -51,6 +51,49 @@ When you first generate a Rails app, it will generate something very similar to 
 </body>
 </html>
 ```
+
+## Yield
+
+Let's say you code up a new layout from scratch, and you end up with something like this:
+
+#### app/views/layouts/application.html.erb
+
+```erb
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ACME Store</title>
+</head>
+<body>
+
+</body>
+</html>
+```
+
+**Please note:** usually you should include links to assets like style sheets and JavaScript files in your layouts, which was ommitted in the code above to keep it simpler. 
+
+Other than the missing links to common assets, this layout is missing something terribly important. To see what it is, have a look at this example where we use this layout. 
+
+In the app that contains the layout defined above, there is an about action, which you expect to be rendered with your layout from above.
+
+####/app/controllers/static_controller.rb
+
+```ruby
+class StaticController < ActionController::Base
+  def about
+  end
+end
+```
+
+There should also be an associated route in the /config/routes.rb file to route a request to **/about** to the about action in the static controller above.
+
+####/config/routes.rb
+'''ruby
+Rails.application.routes.draw do
+  get 'about', to: 'static#about'
+end
+'''
+
 
 
 
