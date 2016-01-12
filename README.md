@@ -25,15 +25,15 @@ Without layouts you would need to copy and paste your logo, navigation, search, 
 
 And when you want to make a change to one of the common components, for example the navigation, you would have to go and make that change in all the template files that you created in your application. This will obviously slow you down a lot.
 
-## Layouts By Default
+## Layouts To The Rescue
 
 Luckily we don't need to copy content from one template file to the next, because layouts in Rails are enabled by default, and when you generate a new Rails app, it generates a layout for you. 
 
-To find the generated layout, go and have a look in your Rails app at the following path. 
+To find the generated layout, go and have a look in your Rails app at the following path. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location.
 
-### app/views/layouts/application.html.erb
+#### app/views/layouts/application.html.erb
 
-You will see something very similar to this, which is the layout that Rails generated for a new app. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location.  
+When you first generate a Rails app, it will generate something very similar to this, depending on your version of Rails. This file is a very good place to start adding common components, like the navigation, search, and footer from the example above. 
 
 ```erb
 <!DOCTYPE html>
