@@ -19,7 +19,7 @@ You would probably have a few different pages in this app, for example:
 2. A detail view that shows more info for a selected product
 3. A shopping cart
 
-Across all these pages you would want a consistent look, which we call a layout. This layout perhaps contains something like a logo, navigation links, a search bar, and a footer at the bottom that contains some info about the shop.
+Across all these pages you would want a consistent look, which is called a layout. This layout perhaps contains something like a logo, navigation links, a search bar, and a footer at the bottom that contains some info about the shop.
 
 Without layouts you would need to copy and paste your logo, navigation, search, and footer code into each action's template that you want in your application.
 
@@ -27,7 +27,7 @@ And when you want to make a change to one of the common components, for example 
 
 ## Layouts To The Rescue
 
-Luckily we don't need to copy content from one template file to the next, because layouts in Rails are enabled by default, and when you generate a new Rails app, it generates a layout for you. 
+Luckily you don't need to copy content from one template file to the next, because layouts in Rails are enabled by default, and when you generate a new Rails app, it generates a layout for you. 
 
 To find the generated layout, go and have a look in your Rails app at the following path. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location.
 
@@ -72,9 +72,9 @@ Let's say you code up a new layout from scratch, and you end up with something l
 
 **Please note:** usually you should include links to assets like style sheets and JavaScript files in your layouts, which was ommitted in the code above to keep it simpler. 
 
-Other than the missing links to common assets, this layout is missing something terribly important. To see what it is, have a look at this example where we use this layout. 
+Other than the missing links to common assets, this layout is missing something terribly important. To see what it is, have a look at the following example that uses this layout. 
 
-In the app that contains the layout defined above, there is an about action, which you expect to be rendered with your layout from above.
+This is an example of an action that we expect to result in our action's template rendered within the layout defined above.
 
 ####/app/controllers/static_controller.rb
 
@@ -88,14 +88,11 @@ end
 There should also be an associated route in the /config/routes.rb file to route a request to **/about** to the about action in the static controller above.
 
 ####/config/routes.rb
-'''ruby
+```ruby
 Rails.application.routes.draw do
   get 'about', to: 'static#about'
 end
-'''
-
-
-
+```
 
 
 Pretty simple README that illustrates how Rails uses layouts in app/views/layouts/application.html.erb as the default layout applied to all views.
