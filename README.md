@@ -12,12 +12,48 @@ After this lesson, you'll be able to...
 ## Life Without Layouts
 
 Imagine that you are tasked to build an online shop app with Rails.
-You would probably have a few different views in this app, for example a list of products, a detail view that shows more info for a selected product, and a shopping cart.
-Across all these views you would definitely want a consistent navigation, perhaps containing a search bar, and a footer at the bottom that contains some info about the shop.
-Without layouts you would need to copy and paste your navigation, search, and footer code into each action's template that you want in your application.
-And when you want to make a change to one of the common components, for example the navigation, you would have to go and make that change in all the template files that you created in your application.
 
-### An Example Of Duplicating Content In Templates
+You would probably have a few different pages in this app, for example: 
+
+1. A list of products
+2. A detail view that shows more info for a selected product
+3. A shopping cart
+
+Across all these pages you would want a consistent look, which we call a layout. This layout perhaps contains something like a logo, navigation links, a search bar, and a footer at the bottom that contains some info about the shop.
+
+Without layouts you would need to copy and paste your logo, navigation, search, and footer code into each action's template that you want in your application.
+
+And when you want to make a change to one of the common components, for example the navigation, you would have to go and make that change in all the template files that you created in your application. This will obviously slow you down a lot.
+
+## Layouts By Default
+
+Luckily we don't need to copy content from one template file to the next, because layouts in Rails are enabled by default, and when you generate a new Rails app, it generates a layout for you. 
+
+To find the generated layout, go and have a look in your Rails app at the following path. 
+
+### app/views/layouts/application.html.erb
+
+You will see something very similar to this, which is the layout that Rails generated for a new app. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location.  
+
+```erb
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ACME Store</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
+```
+
+
+
 
 Pretty simple README that illustrates how Rails uses layouts in app/views/layouts/application.html.erb as the default layout applied to all views.
 
