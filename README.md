@@ -13,7 +13,7 @@ After this lesson, you'll be able to...
 
 Imagine that you are tasked to build an online shop app with Rails.
 
-You would probably have a few different pages in this app, for example: 
+You would probably have a few different pages in this app, for example:
 
 1. A list of products
 2. A detail view that shows more info for a selected product
@@ -27,15 +27,15 @@ And when you want to make a change to one of the common components, for example 
 
 ## Layouts To The Rescue
 
-Luckily you don't need to copy content from one template file to the next, because layouts in Rails are enabled by default, and when you generate a new Rails app, it generates a layout for you. 
+Luckily you don't need to copy content from one template file to the next, because layouts in Rails are enabled by default, and when you generate a new Rails app, it generates a layout for you.
 
-To find the generated layout, go and have a look in your Rails app at the following path. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location.
+To find the generated layout, go and have a look in your Rails app at the following path. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location: **app/views/layouts/application.html.erb**.
 
-#### app/views/layouts/application.html.erb
-
-When you first generate a Rails app, this file will generate something very similar to this, depending on your version of Rails. The application.html.erb file is a very good place to start adding common components, like the navigation, search, and footer from the example above. 
+When you first generate a Rails app, this file will generate something very similar to this, depending on your version of Rails. The application.html.erb file is a very good place to start adding common components, like the navigation, search, and footer from the example above.
 
 ```erb
+<!-- app/views/layouts/application.html.erb -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,30 +56,31 @@ When you first generate a Rails app, this file will generate something very simi
 
 Let's say you code up a new layout from scratch, and you end up with something like this:
 
-#### app/views/layouts/application.html.erb
-
 ```erb
+<!-- app/views/layouts/application.html.erb -->
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>ACME Store</title>
 </head>
 <body>
-
+    <h1>Welcome To The ACME Store!</h1>
 </body>
 </html>
 ```
 
-**Please note:** usually you should include links to assets like style sheets and JavaScript files in your layouts, which was ommitted in the code above to keep it simpler. 
+**Please note:** usually you should include links to assets like style sheets and JavaScript files in your layouts, which was omitted in the code above to keep it simpler.
 
-Other than the missing links to common assets, this layout is missing something terribly important. To see what it is, have a look at the following example that uses this layout. 
+Other than the missing links to common assets, this layout is missing something **terribly important**. To see what it is, have a look at the following example that uses this layout.
 
 This is an example of an action that we expect to result in our action's template rendered within the layout defined above.
 
-####/app/controllers/static_controller.rb
 
 ```ruby
-class StaticController < ActionController::Base
+#/app/controllers/static_controller.rb
+
+class StaticController < ApplicationController
   def about
   end
 end
@@ -87,12 +88,26 @@ end
 
 There should also be an associated route in the /config/routes.rb file to route a request to **/about** to the about action in the static controller above.
 
-####/config/routes.rb
+#### /config/routes.rb
 ```ruby
 Rails.application.routes.draw do
   get 'about', to: 'static#about'
 end
 ```
+
+And this is the template for the about action, with a simple message in it, which we would want to display in our layout from above.
+
+```erb
+# /app/views/static/about.html.erb
+<p>Hello!</p>
+```
+
+When you load up this route in your browser, you will be greeted by a very bold message saying: **Welcome To The ACME Store!**, but you won't see the **Hello!** from the about action's template.
+
+This is happening because the layout file at *app/views/layouts/application.html.erb* does not have a yield statement in it.
+
+The yield keyword is what Rails uses to decide where in the layout to render the content for the action. If you don't put Yield in your layout, only your layout will render for each action, instead of your layout with the contents of the action template in the correct place in the layout.
+
 
 
 Pretty simple README that illustrates how Rails uses layouts in app/views/layouts/application.html.erb as the default layout applied to all views.
