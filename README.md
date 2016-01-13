@@ -108,10 +108,10 @@ And this is the template for the about action, with a simple message in it, whic
 
 When you load up this route in your browser, you will be greeted by a very bold message saying: **Welcome To The ACME Store!**, but you won't see the **Hello!** from the about action's template.
 
-This is happening because the layout file at *app/views/layouts/application.html.erb* does not have a yield statement in it.
-The yield keyword is what Rails uses to decide where in the layout to render the content for the action. If you don't put Yield in your layout, only your layout will render for each action, instead of your layout with the contents of the action template in the correct place in the layout.
+This is happening because the layout file at *app/views/layouts/application.html.erb* does not have a `yield` statement in it.
+The `yield` keyword is what Rails uses to decide where in the layout to render the content for the action. If you don't put Yield in your layout, only your layout will render for each action, instead of your layout with the contents of the action template in the correct place in the layout.
 
-To fix this issue, just change the layout file to include yield:
+To fix this issue, just change the layout file to include `yield`:
 
 ```erb
 <!-- app/views/layouts/application.html.erb -->
@@ -128,7 +128,7 @@ To fix this issue, just change the layout file to include yield:
 </html>
 ```
 
-Now when you hit up this route in your browser, you will see **Welcome To The ACME Store!**, followed by **Hello!**. This means that when the layout rendered, it pulled the action specific template into the correct place, where we added the yield statement.
+Now when you hit up this route in your browser, you will see **Welcome To The ACME Store!**, followed by **Hello!**. This means that when the layout rendered, it pulled the action specific template into the correct place, where we added the `yield` statement.
 
 ## How Layouts and Templates Are Stitched Together
 
@@ -137,7 +137,7 @@ At it's simplest level, this is what happens when a request is made to your rail
 1. Rails finds the template for your action based on either convention, or any other options you passed to the render method in your controller action.
 2. It finds the correct layout to use, in a very similar fashion as finding the action's template, through convention, or specific options that you provided.
 3. Rails uses the action template that you provided to generate the content specific to the action (this template might be composed of partial views, which you'll learn about a bit later)
-4. It then looks for the **yield** statement in the layout, and inserts the result of the action template in the layout at the correct spot
+4. It then looks for the `yield` statement in the layout, and inserts the result of the action template in the layout at the correct spot
 
 So this means that for every request handled by rails, at most one layout will be used, and only one action template. The action template can call out to other templates, called partials, to render itself. Partials are covered in upcoming lessons, so don't worry too much about it for now.
 
