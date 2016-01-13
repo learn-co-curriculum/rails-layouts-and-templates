@@ -157,9 +157,7 @@ Most applications use the default layout for everything though, so try not to ha
 
 If you need to override the conventions explained above, you can easily do so. For example, if you have a controller called **ShoppingCartController**, and you want to use the layout at **layouts/products.html.erb**, you have two options:
 
-#### 1. If you want to use the products layout for every action
-
-Simply specify that you want to use the products layout using the `layout` method in your controller, passing it a string that it can use to find the layout:
+1. If you want to use the products layout for every action, simply specify that you want to use the products layout using the `layout` method in your controller, passing it a string that it can use to find the layout:
 
 ```ruby
 class ShoppingCartController < ApplicationController
@@ -167,19 +165,30 @@ class ShoppingCartController < ApplicationController
 end
 ```
 
-#### 2. If you want to use the products only for a particular action
-
-Simply use the render method in the controller action, and specify the layout you want it to use:
+2. If you want to use the products only for a particular action, simply use the render method in the controller action, and specify the layout you want it to use like this:
 
 ```ruby
 class ShoppingCartController < ApplicationController
   def list
-    render action: "list", layout: "products"
+    render :layout => "static"
   end
 
   # the rest  of the actions will use standard conventions
 end
 ```
+
+If you want to render your action template without a template, you can do the following:
+
+```ruby
+class ShoppingCartController < ApplicationController
+  def list
+    render :layout => false
+  end
+
+  # the rest  of the actions will use standard conventions
+end
+```
+
 
 ## Recap
 
