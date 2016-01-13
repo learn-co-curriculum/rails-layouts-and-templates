@@ -72,7 +72,7 @@ Let's say you code up a new layout from scratch, and you end up with something l
 </html>
 ```
 
-**Please note:** usually you should include links to assets like style sheets and JavaScript files in your layouts, which was omitted in the code above to keep it simpler.
+**Note:** usually you should include links to assets like style sheets and JavaScript files in your layouts, which was omitted in the code above to keep it simpler.
 
 Other than the missing links to common assets, this layout is missing something **terribly important**. To see what it is, have a look at the following example that uses this layout.
 
