@@ -113,9 +113,9 @@ Oh no! You have to go and change it in two files! Imagine having tens, or even h
 
 Luckily you don't need to copy content from one template file to the next, because layouts in Rails are enabled by default, and when you generate a new Rails app, it generates a layout for you.
 
-To find the generated layout, go and have a look in your Rails app at the following path. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location: **app/views/layouts/application.html.erb**.
+To find the generated layout, go and have a look in your Rails app at the following path. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location: `app/views/layouts/application.html.erb`.
 
-When you first generate a Rails app, this file will generate something very similar to this, depending on your version of Rails. The application.html.erb file is a very good place to start adding common components, like the navigation, search, and footer from the example above.
+When you first generate a Rails app, this file will generate something very similar to this, depending on your version of Rails. The `application.html.erb` file is a very good place to start adding common components like the navigation, search, and footer from the example above.
 
 ```erb
 <!-- app/views/layouts/application.html.erb -->
@@ -123,7 +123,7 @@ When you first generate a Rails app, this file will generate something very simi
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ACME Store</title>
+  <title>Flatiron Store</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -170,7 +170,7 @@ class StaticController < ApplicationController
 end
 ```
 
-There should also be an associated route in the /config/routes.rb file to route a request to **/about** to the about action in the static controller above.
+There should also be an associated route in the `/config/routes.rb` file to route a request to `/about` to the about action in the static controller above.
 
 ```ruby
 #/config/routes.rb
@@ -188,12 +188,12 @@ And this is the template for the about action, with a simple message in it, whic
 <p>Hello!</p>
 ```
 
-When you load up this route in your browser, you will be greeted by a very bold message saying: **Welcome To The Flatiron Store!**, but you won't see the **Hello!** from the about action's template.
+When you load up the `static#about` route in your browser, you will be greeted by a very bold message saying: **Welcome To The Flatiron Store!**, but you won't see the **Hello!** from the about action's template at `/app/views/static/about.html.erb`.
 
-This is happening because the layout file at *app/views/layouts/application.html.erb* does not have a `yield` statement in it.
-The `yield` keyword is what Rails uses to decide where in the layout to render the content for the action. If you don't put Yield in your layout, only your layout will render for each action, instead of your layout with the contents of the action template in the correct place in the layout.
+This is happening because the layout file at `app/views/layouts/application.html.erb` does not have a `yield` statement in it.
+`yield` is what Rails uses to decide where in the layout to render the content for the action. If you don't put `yield` in your layout, only your layout will render for each action, instead of your layout with the contents of the action template in the correct place in the layout.
 
-To fix this issue, just change the layout file to include `yield`:
+To fix this issue, just change the layout file at `app/views/layouts/application.html.erb` to include `yield`:
 
 ```erb
 <!-- app/views/layouts/application.html.erb -->
@@ -201,16 +201,16 @@ To fix this issue, just change the layout file to include `yield`:
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ACME Store</title>
+  <title>Flatiron Store</title>
 </head>
 <body>
-    <h1>Welcome To The ACME Store!</h1>
+    <h1>Welcome To The Flatiron Store!</h1>
     <%= yield %>    
 </body>
 </html>
 ```
 
-Now when you hit up this route in your browser, you will see **Welcome To The ACME Store!**, followed by **Hello!**. This means that when the layout rendered, it pulled the action specific template into the correct place, where we added the `yield` statement.
+Now when you hit up the `static#about` route in your browser, you will see **Welcome To The Flatiron Store!**, followed by **Hello!**. This means that when the layout rendered, it pulled the action specific template into the correct place, where we added the `yield` statement!
 
 ## How Layouts and Templates Are Stitched Together
 
@@ -225,19 +225,19 @@ So this means that for every request handled by rails, at most one layout will b
 
 ## How Rails Decides Which Layout To Use
 
-Think about the example from earlier in this lesson, the ACME store app. As mentioned before, it would make sense to have the same layout for the product list, product detail pages, and cart, because you would want some common elements in the same places between those different views.
+Think about the example from earlier in this lesson, the Flatiron store app. As mentioned before, it would make sense to have the same layout for the product list, product detail pages, and cart, because you would want some common elements in the same places between those different views.
 
 But when you add administration functionality to this online store, in order to allow someone to add new products to the site, update prices, and perhaps draw reports, you probably want to use a different layout, which is quite easy to do with Rails.
 
 ### Deciding On A Layout Through Convention
 
-Rails uses a simple convention to find the correct layout for your request. If you have a controller called `ProductsController`, it'll see whether there is a layout for that controller at **layouts/products.html.erb**. Similarly, if you have a controller called `AdminController`, it'll look for a layout at **layouts/admin.html.erb**. If it can't find a layout specific to your controller, it'll use the default layout at **app/views/layouts/application.html.erb**.
+Rails uses a simple convention to find the correct layout for your request. If you have a controller called `ProductsController`, it'll see whether there is a layout for that controller at `layouts/products.html.erb`. Similarly, if you have a controller called `AdminController`, it'll look for a layout at `layouts/admin.html.erb`. If it can't find a layout specific to your controller, it'll use the default layout at `app/views/layouts/application.html.erb`.
 
 Most applications use the default layout for everything though, so try not to have a layout for each controller. You need to have a consistent look and feel throughout your site, and use a different layout only if the situation really warrants it.
 
 ### Overriding Conventions
 
-If you need to override the conventions explained above, you can easily do so. For example, if you have a controller called `ShoppingCartController`, and you want to use the layout at **layouts/products.html.erb**, you have two options:
+If you need to override the conventions explained above, you can easily do so. For example, if you have a controller called `ShoppingCartController`, and you want to use the layout at `layouts/products.html.erb`, you have two options:
 
 1. If you want to use the products layout for every action, simply specify that you want to use the products layout using the `layout` method in your controller, passing it a string that it can use to find the layout:
 
