@@ -21,11 +21,95 @@ You would probably have a few different views in this app, for example:
 2. A detail view that shows more info for a selected product
 3. A shopping cart
 
-Across all these views you would want a consistent look, which is called a layout. This layout perhaps contains something like a logo, navigation links, a search bar, and a footer at the bottom that contains some info about the shop.
+Across all these views you would want a consistent look. This consistent look perhaps contains something like a logo, navigation links, a search bar, and a footer at the bottom that contains some info about the shop.
 
 Without layouts you would need to copy and paste your logo, navigation, search, and footer code into each action's template that you want in your application.
 
-And when you want to make a change to one of the common components, for example the navigation, you would have to go and make that change in all the template files that you created in your application. This will obviously slow you down a lot.
+So now you start building this list of products, and you end up with an action template that looks something like this. It has a nav component, a list of products and a footer. It would be the worst online shop ever, but let's keep it simple for now.
+
+```erb
+<!-- app/views/products/index.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flatiron Store</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>  
+</head>
+<body>
+    <div class="navigation">
+      <ul>
+        <a href="/products">Products</a>
+        <a href="/cart">Cart</a>
+      </ul>
+    </div>
+
+    <h1>The Product List</h1>
+
+    <ul>
+        <% @products.each do |job| %>
+          <%= link_to 'Show', job %>
+    </ul>  
+
+    <div class="footer">
+      <p>This shop promises the lowest prices in widgets!</p>
+    </div>    
+</body>
+</html>
+```
+
+Great, so you have a list of products now, any shop should have that, shouldn't it? Next you decide to build a view that will show the product details when customers click on a link for that product.
+
+We've got all the structure sorted out now with the nav, and the footer. So we open up app/views/products/index.html.erb, select all the code, and copy it. Now we can paste it into our new template.
+
+```erb
+<!-- app/views/products/show.html.erb -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flatiron Store</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>  
+</head>
+<body>
+    <div class="navigation">
+      <ul>
+        <a href="/products">Products</a>
+        <a href="/cart">Cart</a>
+      </ul>
+    </div>
+
+    <h1><%= product.name%></h1>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @product.name %>
+    </p>
+
+    <p>
+      <strong>Category:</strong>
+      <%= @product.category %>
+    </p>
+
+    <p>
+      <strong>Price:</strong>
+      <%= @product.price %>
+    </p>
+
+    <div class="footer">
+      <p>This shop promises the lowest prices in widgets!</p>
+    </div>    
+</body>
+</html>
+```
+
+You call over your colleagues, all excited that you've managed to get it working so quickly. The designer takes on look and says, you know what, the navigation is all wrong. You need to make it use the orange class, and make it pop by using the pop class.
+
+Oh no! You have to go and change it in two files! Imagine having tens, or even hundreds of templates like this. Having to go make the same change over and over again would be very time consuming and prone to errors.  
 
 ## Layouts To The Rescue
 
