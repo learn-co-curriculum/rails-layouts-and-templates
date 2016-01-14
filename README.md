@@ -64,10 +64,10 @@ Let's say you code up a new layout from scratch, and you end up with something l
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ACME Store</title>
+  <title>Flatiron Store</title>
 </head>
 <body>
-    <h1>Welcome To The ACME Store!</h1>
+    <h1>Welcome To The Flatiron Store!</h1>
 </body>
 </html>
 ```
@@ -106,7 +106,7 @@ And this is the template for the about action, with a simple message in it, whic
 <p>Hello!</p>
 ```
 
-When you load up this route in your browser, you will be greeted by a very bold message saying: **Welcome To The ACME Store!**, but you won't see the **Hello!** from the about action's template.
+When you load up this route in your browser, you will be greeted by a very bold message saying: **Welcome To The Flatiron Store!**, but you won't see the **Hello!** from the about action's template.
 
 This is happening because the layout file at *app/views/layouts/application.html.erb* does not have a `yield` statement in it.
 The `yield` keyword is what Rails uses to decide where in the layout to render the content for the action. If you don't put Yield in your layout, only your layout will render for each action, instead of your layout with the contents of the action template in the correct place in the layout.
@@ -149,13 +149,13 @@ But when you add administration functionality to this online store, in order to 
 
 ### Deciding On A Layout Through Convention
 
-Rails uses a simple convention to find the correct layout for your request. If you have a controller called **ProductsController**, it'll see whether there is a layout for that controller at **layouts/products.html.erb**. Similarly, if you have a controller called **AdminController**, it'll look for a layout at **layouts/admin.html.erb**. If it can't find a layout specific to your controller, it'll use the default layout at **app/views/layouts/application.html.erb**.
+Rails uses a simple convention to find the correct layout for your request. If you have a controller called `ProductsController`, it'll see whether there is a layout for that controller at **layouts/products.html.erb**. Similarly, if you have a controller called `AdminController`, it'll look for a layout at **layouts/admin.html.erb**. If it can't find a layout specific to your controller, it'll use the default layout at **app/views/layouts/application.html.erb**.
 
 Most applications use the default layout for everything though, so try not to have a layout for each controller. You need to have a consistent look and feel throughout your site, and use a different layout only if the situation really warrants it.
 
 ### Overriding Conventions
 
-If you need to override the conventions explained above, you can easily do so. For example, if you have a controller called **ShoppingCartController**, and you want to use the layout at **layouts/products.html.erb**, you have two options:
+If you need to override the conventions explained above, you can easily do so. For example, if you have a controller called `ShoppingCartController`, and you want to use the layout at **layouts/products.html.erb**, you have two options:
 
 1. If you want to use the products layout for every action, simply specify that you want to use the products layout using the `layout` method in your controller, passing it a string that it can use to find the layout:
 
