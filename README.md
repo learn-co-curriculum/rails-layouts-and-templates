@@ -23,9 +23,7 @@ You would probably have a few different views in this app, for example:
 
 Across all these views you would want a consistent look. This consistent look perhaps contains something like a logo, navigation links, a search bar, and a footer at the bottom that contains some info about the shop.
 
-Without layouts you would need to copy and paste your logo, navigation, search, and footer code into each action's template that you want in your application.
-
-So now you start building this list of products, and you end up with an action template that looks something like this. It has a nav component, a list of products and a footer. It would be the worst online shop ever, but let's keep it simple for now.
+You start building the list of products and you end up with an action template that looks something like this. It has a nav component, a list of products and a footer. It would be the worst online shop ever, but let's keep it simple for now.
 
 ```erb
 <!-- app/views/products/index.html.erb -->
@@ -50,7 +48,7 @@ So now you start building this list of products, and you end up with an action t
 
     <ul>
         <% @products.each do |job| %>
-          <%= link_to 'Show', job %>
+          <li><%= link_to 'Show', job %></li>
     </ul>  
 
     <div class="footer">
@@ -60,9 +58,9 @@ So now you start building this list of products, and you end up with an action t
 </html>
 ```
 
-Great, so you have a list of products now, any shop should have that, shouldn't it? Next you decide to build a view that will show the product details when customers click on a link for that product.
+Great, so you have a list of products now! Any shop should have that, shouldn't it? Next you decide to build the view that will show the product details when customers click on a link for that product.
 
-We've got all the structure sorted out now with the nav, and the footer. So we open up app/views/products/index.html.erb, select all the code, and copy it. Now we can paste it into our new template.
+You've got done all the work to sort out the structure with a nav and a footer. You open up app/views/products/index.html.erb, select all the code, and copy it on to your clipboard. Now you are ready to paste it into your new template and customize it to show product info.
 
 ```erb
 <!-- app/views/products/show.html.erb -->
@@ -107,9 +105,9 @@ We've got all the structure sorted out now with the nav, and the footer. So we o
 </html>
 ```
 
-You call over your colleagues, all excited that you've managed to get it working so quickly. The designer takes on look and says, you know what, the navigation is all wrong. You need to make it use the orange class, and make it pop by using the pop class.
+You call over your colleagues, all excited that you've managed to get it working so quickly. The designer takes one look and says: "you know what, the navigation is all wrong. You need to make it use the orange class, and make it pop by using the pop class".
 
-Oh no! You have to go and change it in two files! Imagine having tens, or even hundreds of templates like this. Having to go make the same change over and over again would be very time consuming and prone to errors.  
+Oh no! You have to go and change it in two files! Imagine having tens, or even hundreds of templates like this. Having to go make the same change over and over again would be very time consuming and prone to errors. In other words, it'll be a total drag.
 
 ## Layouts To The Rescue
 
