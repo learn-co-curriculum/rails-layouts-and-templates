@@ -107,7 +107,7 @@ You've got done all the work to sort out the structure with a nav and a footer. 
 
 You call over your colleagues, all excited that you've managed to get it working so quickly. The designer takes one look and says: "you know what, the navigation is all wrong. You need to make it use the orange class, and make it pop by using the pop class".
 
-Oh no! You have to go and change it in two files! Imagine having tens, or even hundreds of templates like this. Having to go make the same change over and over again would be very time consuming and prone to errors. In other words, it'll be a total drag.  Because we've violated the DRY principle, we have to make changes in more than one place.  Layouts apply the same principle as methods, to generating HTML code.
+Oh no! You have to go and change it in two files! Imagine having tens, or even hundreds of templates like this. Having to go make the same change over and over again would be very time consuming and prone to errors. In other words, it'll be a total drag.  Because we've violated the DRY principle, we have to make changes in more than one place.  Layouts apply the same principle as methods to generating HTML code.
 
 ## Layouts To The Rescue
 
