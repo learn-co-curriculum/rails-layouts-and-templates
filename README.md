@@ -81,7 +81,7 @@ You've got done all the work to sort out the structure with a nav and a footer. 
       </ul>
     </div>
 
-    <h1><%= product.name%></h1>
+    <h1><%= @product.name%></h1>
 
     <p>
       <strong>Name:</strong>
@@ -107,7 +107,7 @@ You've got done all the work to sort out the structure with a nav and a footer. 
 
 You call over your colleagues, all excited that you've managed to get it working so quickly. The designer takes one look and says: "you know what, the navigation is all wrong. You need to make it use the orange class, and make it pop by using the pop class".
 
-Oh no! You have to go and change it in two files! Imagine having tens, or even hundreds of templates like this. Having to go make the same change over and over again would be very time consuming and prone to errors. In other words, it'll be a total drag.
+Oh no! You have to go and change it in two files! Imagine having tens, or even hundreds of templates like this. Having to go make the same change over and over again would be very time consuming and prone to errors. In other words, it'll be a total drag.  Because we've violated the DRY principle, we have to make changes in more than one place.  Layouts apply the same principle as methods, to generating HTML code.
 
 ## Layouts To The Rescue
 
@@ -115,7 +115,7 @@ Luckily you don't need to copy content from one template file to the next, becau
 
 To find the generated layout, go and have a look in your Rails app at the following path. When you render a template for an action without specifying a different layout to use, Rails will use the layout found at this location: `app/views/layouts/application.html.erb`.
 
-When you first generate a Rails app, this file will generate something very similar to this, depending on your version of Rails. The `application.html.erb` file is a very good place to start adding common components like the navigation, search, and footer from the example above.
+When you first generate a Rails app, depending on your version of Rails, the automatically generated layout file will look similar to this. The `application.html.erb` file is a very good place to start adding common components like the navigation, search, and footer from the example above.
 
 ```erb
 <!-- app/views/layouts/application.html.erb -->
@@ -212,6 +212,8 @@ To fix this issue, just change the layout file at `app/views/layouts/application
 
 Now when you hit up the `static#about` route in your browser, you will see **Welcome To The Flatiron Store!**, followed by **Hello!**. This means that when the layout rendered, it pulled the action specific template into the correct place, where we added the `yield` statement!
 
+Those of you that remember Ruby blocks might be thinking that this looks very similar to how ruby yields to blocks in a method call.  The same principle is at work here, we're yielding to a chunk of code and don't know what it will do in advance.  We always want to run the layout part of the method, and we let any other chunk of code that produces HTML (a template in this case) run at that point in the method call.
+
 ## How Layouts and Templates Are Stitched Together
 
 At it's simplest level, this is what happens when a request is made to your rails application:
@@ -233,7 +235,7 @@ But when you add administration functionality to this online store, in order to 
 
 Rails uses a simple convention to find the correct layout for your request. If you have a controller called `ProductsController`, it'll see whether there is a layout for that controller at `layouts/products.html.erb`. Similarly, if you have a controller called `AdminController`, it'll look for a layout at `layouts/admin.html.erb`. If it can't find a layout specific to your controller, it'll use the default layout at `app/views/layouts/application.html.erb`.
 
-Most applications use the default layout for everything though, so try not to have a layout for each controller. You need to have a consistent look and feel throughout your site, and use a different layout only if the situation really warrants it.
+With the exception of the admin section of a site, most applications use the default layout for everything, so there's no need to have a layout for each controller. You want to have a consistent look and feel throughout your site, and use a different layout only if the situation really warrants it.
 
 ### Overriding Conventions
 
@@ -270,7 +272,7 @@ class ShoppingCartController < ApplicationController
   # the rest  of the actions will use standard conventions
 end
 ```
-
+**Note:** It's pretty unusual to not render the layout in a standard action.  However, once you start using AJAX (Javascript) it's quite common.  Keep this in the back of your mind when you get to Javascript.
 
 ## Recap
 
