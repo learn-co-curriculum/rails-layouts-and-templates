@@ -212,7 +212,7 @@ To fix this issue, just change the layout file at `app/views/layouts/application
 
 Now when you hit up the `static#about` route in your browser, you will see **Welcome To The Flatiron Store!**, followed by **Hello!**. This means that when the layout rendered, it pulled the action specific template into the correct place, where we added the `yield` statement!
 
-Those of you that remember Ruby blocks might be thinking that this looks very similar to how ruby yields to blocks in a method call.  The same principle is at work here, we're yielding to a chunk of code and don't know what it will do in advance.  We always want to run the layout part of the method, and we let any other chunk of code that produces HTML (a template in this case) run at that point in the method call.
+Those of you that remember Ruby blocks might be thinking that this looks very similar to how Ruby yields to blocks in a method call.  The same principle is at work here, we're yielding to a chunk of code and don't know what it will do in advance.  We always want to run the layout part of the method, and we let any other chunk of code that produces HTML (a template in this case) run at that point in the method call.
 
 ## How Layouts and Templates Are Stitched Together
 
