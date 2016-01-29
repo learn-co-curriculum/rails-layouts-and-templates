@@ -279,3 +279,5 @@ end
 Use Layouts to provide a common look and feel between different views of your app. As much as possible use and adapt only the default layout, until you have a good reason to use a different layout for a different section or action.
 
 Next, we'll take what we've learned here and see it working in a lab.
+
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/rails-layouts-and-templates' title='Rails Layouts And Templates'>Rails Layouts And Templates</a> on Learn.co and start learning to code for free.</p>
