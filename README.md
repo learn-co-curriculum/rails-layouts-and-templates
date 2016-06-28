@@ -261,7 +261,7 @@ class ShoppingCartController < ApplicationController
 end
 ```
 
-If you want to render your action template without a template, you can do the following:
+If you want to render your action template without a layout, you can do the following:
 
 ```ruby
 class ShoppingCartController < ApplicationController
@@ -281,3 +281,5 @@ Use Layouts to provide a common look and feel between different views of your ap
 Next, we'll take what we've learned here and see it working in a lab.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/rails-layouts-and-templates' title='Rails Layouts And Templates'>Rails Layouts And Templates</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/rails-layouts-and-templates'>Layouts And Templates in Rails</a> on Learn.co and start learning to code for free.</p>
