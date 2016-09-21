@@ -249,7 +249,7 @@ If you need to override the conventions explained above, you can easily do so. F
   ```ruby
   class ShoppingCartController < ApplicationController
     def list
-      render :layout => "static"
+      render :layout => "products"
     end
   
     # the rest of the actions will use standard conventions
@@ -277,3 +277,5 @@ Use layouts to provide a common look and feel between different views of your ap
 Next, we'll take what we've learned here and apply it in a lab.
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/rails-layouts-and-templates' title='Rails Layouts and Templates'>Rails Layouts and Templates</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/rails-layouts-and-templates'>Layouts And Templates in Rails</a> on Learn.co and start learning to code for free.</p>
