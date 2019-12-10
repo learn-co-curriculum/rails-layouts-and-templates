@@ -249,7 +249,7 @@ If you need to override the conventions explained above, you can easily do so. F
   ```ruby
   class ShoppingCartController < ApplicationController
     def list
-      render :layout => "static"
+      render :layout => "products"
     end
   
     # the rest of the actions will use standard conventions
