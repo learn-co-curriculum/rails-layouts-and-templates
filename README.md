@@ -1,4 +1,4 @@
-# Rails Layouts and Templates
+# Layouts and Templates
 
 This lesson will show you how to use layouts to achieve a common look and feel between different views in your app.
 
@@ -34,7 +34,7 @@ You start building the list of products, and you end up with an action template 
   <title>Flatiron Store</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>  
+  <%= csrf_meta_tags %>
 </head>
 <body>
     <div class="navigation">
@@ -50,11 +50,11 @@ You start building the list of products, and you end up with an action template 
       <% @products.each do |job| %>
         <li><%= link_to 'Show', job %></li>
       <% end %>
-    </ul>  
+    </ul>
 
     <div class="footer">
       <p>This shop promises the lowest prices in widgets!</p>
-    </div>    
+    </div>
 </body>
 </html>
 ```
@@ -72,7 +72,7 @@ You finish sorting out the view's structure with a nav and footer. You open up `
   <title>Flatiron Store</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>  
+  <%= csrf_meta_tags %>
 </head>
 <body>
     <div class="navigation">
@@ -96,7 +96,7 @@ You finish sorting out the view's structure with a nav and footer. You open up `
 
     <div class="footer">
       <p>This shop promises the lowest prices in widgets!</p>
-    </div>    
+    </div>
 </body>
 </html>
 ```
@@ -200,14 +200,14 @@ To fix this issue, add a `yield` to the layout file at `app/views/layouts/applic
 </head>
 <body>
     <h1>Welcome To The Flatiron Store!</h1>
-    <%= yield %>    
+    <%= yield %>
 </body>
 </html>
 ```
 
 Now when you hit up the `static#about` route in your browser, you will see **Welcome To The Flatiron Store!** followed by **Hello!** This means that, when the layout rendered, it pulled the action's specific template into the correct place –– right where we added the `yield` statement!
 
-Those of you who remember Ruby blocks might be thinking that this looks very similar to how Ruby yields to blocks in a method call.  The same principle is at work here: we're yielding to a chunk of code and don't know what it will do in advance. We always want to run the layout part of the method, and we let any other chunk of code that produces HTML (a template in this case) run at the `yield` point in the method call.
+Those of you who remember Ruby blocks might be thinking that this looks very similar to how Ruby yields to blocks in a method call. The same principle is at work here: we're yielding to a chunk of code and don't know what it will do in advance. We always want to run the layout part of the method, and we let any other chunk of code that produces HTML (a template in this case) run at the `yield` point in the method call.
 
 ## How Layouts and Templates are Stitched Together
 
@@ -238,23 +238,23 @@ If you need to override the conventions explained above, you can easily do so. F
 
 1. If you want to use the products layout for every action, simply specify that you want to use the products layout by invoking the `layout` method in your controller, passing it a string that it can use to find the desired layout:
 
-  ```ruby
-  class ShoppingCartController < ApplicationController
-    layout "products"
-  end
-  ```
+```ruby
+class ShoppingCartController < ApplicationController
+  layout "products"
+end
+```
 
 2. If you want to use the products layout only for a particular action, simply use the `render` method in the controller action, specifying the layout you want it to use like this:
 
-  ```ruby
-  class ShoppingCartController < ApplicationController
-    def list
-      render :layout => "products"
-    end
-  
-    # the rest of the actions will use standard conventions
+```ruby
+class ShoppingCartController < ApplicationController
+  def list
+    render :layout => "products"
   end
-  ```
+
+  # the rest of the actions will use standard conventions
+end
+```
 
 If you want to render your action template without a layout, you can do the following:
 
@@ -268,7 +268,7 @@ class ShoppingCartController < ApplicationController
 end
 ```
 
-**Note:** It's pretty unusual to not render the layout in a standard action.  However, once you start using AJAX (JavaScript), it's quite common. Keep this in the back of your mind when you get to JavaScript.
+**Note:** It's pretty unusual to not render the layout in a standard action. However, once you start using AJAX (JavaScript), it's quite common. Keep this in the back of your mind when you get to JavaScript.
 
 ## Recap
 
